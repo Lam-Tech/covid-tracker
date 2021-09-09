@@ -13,12 +13,13 @@ class NavBar extends React.Component {
       <div>
         {this.props.currentUser === ' ' ? (
           <Menu secondary style={menuStyle} borderless>
+          </Menu>
+        ) : (
+          <Menu secondary style={menuStyle} borderless>
             <Menu.Item as={NavLink} activeClassName="" exact to="/">
               <Header as='h1'>Covid Tracker</Header>
             </Menu.Item>
           </Menu>
-        ) : (
-          <Menu secondary style={menuStyle} borderless></Menu>
         )}
       </div>
     );
