@@ -1,21 +1,36 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
+import { withRouter, NavLink } from 'react-router-dom';
+import { Container, Menu } from 'semantic-ui-react';
 
 /** The Footer appears at the bottom of every page. Rendered by the App Layout component. */
 class Footer extends React.Component {
   render() {
-    const divStyle = { paddingTop: '15px' };
+    const menuStyle = { paddingLeft: '700px' };
     return (
-      <footer>
-        <div style={divStyle} className="ui center aligned container">
-          <hr />
-              Department of Information and Computer Sciences <br />
-              University of Hawaii<br />
-              Honolulu, HI 96822 <br />
-          <a href="http://ics-software-engineering.github.io/meteor-application-template-react">Template Home Page</a>
-        </div>
+      <footer className="footer">
+        <Container fixed style={menuStyle}>
+          <Menu secondary borderless widths={3}>
+            {this.props.currentUser ? (
+              [<Menu.Item as={NavLink} activeClassName="active" exact to="/home" key='home'>Home</Menu.Item>,
+                <Menu.Item as={NavLink} activeClassName="active" exact to="/past-history" key='past-history'>Past</Menu.Item>,
+                <Menu.Item as={NavLink} activeClassName="active" exact to="/profile" key='profile'>Profile</Menu.Item>]
+            ) : ''}
+          </Menu>
+        </Container>
       </footer>
     );
   }
 }
 
-export default Footer;
+Footer.propTypes = {
+  currentUser: PropTypes.string,
+};
+
+const FooterContainer = withTracker(() => ({
+  currentUser: Meteor.user() ? Meteor.user().username : '',
+}))(Footer);
+
+export default withRouter(FooterContainer);
