@@ -5,6 +5,7 @@ import { Button, Icon, Header, Modal, Container } from 'semantic-ui-react';
 class Condition extends React.Component {
   constructor(props) {
     super(props);
+    this.today = new Date().toLocaleString().split(',')[0];
     this.state = {
       prompt: false,
       status: 'Undetermined',
@@ -39,7 +40,12 @@ class Condition extends React.Component {
             </Button>
           </Modal.Actions>
         </Modal>
-        <h1>Status:
+        <h1>
+          Date:
+          <span> {this.today}</span>
+        </h1>
+        <h1>
+          Status:
           <span id="answer"> {this.state.status}</span>
         </h1>
       </Container>
