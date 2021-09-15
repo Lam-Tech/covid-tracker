@@ -75,7 +75,7 @@ class Signup extends React.Component {
           <Form.Button animated textAlign='left'>
             <Button.Content visible>Submit</Button.Content>
             <Button.Content hidden>
-              <Icon name='arrow right' />
+              <Icon name='arrow alternate circle right' />
             </Button.Content>
           </Form.Button>
         </Form>
