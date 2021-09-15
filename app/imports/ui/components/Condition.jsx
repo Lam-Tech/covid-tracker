@@ -1,12 +1,10 @@
 import React from 'react';
 import { Button, Icon, Header, Modal, Container } from 'semantic-ui-react';
-import { Meteor } from 'meteor/meteor';
 
 /** A simple static component to render some text for the landing page. */
 class Condition extends React.Component {
   constructor(props) {
     super(props);
-    this.user = Meteor.user().username;
     this.today = new Date().toLocaleString().split(',')[0];
     this.state = {
       prompt: false,
@@ -15,7 +13,6 @@ class Condition extends React.Component {
   }
 
   render() {
-    console.log(this.user);
     return (
       <Container>
         <Modal
@@ -26,13 +23,29 @@ class Condition extends React.Component {
           size='small'
           trigger={<Button inverted color='red'>Check for Symptoms</Button>}
         >
-          <Header>
-              Answer the following Questions
+          <Header size='huge'>
+              Do any of the following apply to you?
           </Header>
           <Modal.Content>
             <p>
-                Are you sick?
+              Have you tested positive for COVID-19 and are on home isolation?
             </p>
+            <p>
+                Any of the Symptoms apply to you
+            </p>
+            <ul>
+              <li>Fever greater than 100 F or feeling feverish</li>
+              <li>Cough</li>
+              <li>Shortness of Breath</li>
+              <li>Sore throat</li>
+              <li>Unexplained musle/body aches</li>
+              <li>Nausea</li>
+              <li>Loss of senses of taste</li>
+              <li>Runny nose</li>
+              <li>Headache</li>
+              <li>Skin Rash</li>
+              <li>Chest pain</li>
+            </ul>
           </Modal.Content>
           <Modal.Actions>
             <Button color='red' inverted onClick={() => this.setState({ prompt: false, status: 'Not Safe' })}>
