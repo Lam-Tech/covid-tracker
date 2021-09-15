@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
-import { Button, Container, Form, Header, Message } from 'semantic-ui-react';
+import { Input, Container, Form, Header, Message } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
 /**
  * Signup component is similar to signin component, but we create a new user instead.
