@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
-import { Container, Form, Header, Message, Input, Button, Icon } from 'semantic-ui-react';
+import { Button, Container, Form, Header, Message } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
 /**
  * Signup component is similar to signin component, but we create a new user instead.
@@ -38,12 +38,12 @@ class Signup extends React.Component {
       return <Redirect to={from}/>;
     }
     return (
-      <Container id="signup-page" textAlign='left' className='signupbg'>
+      <Container id="signup-page" textAlign='center' className='signupbg'>
         <Header as="h1" textAlign="center">
               Create account
         </Header>
-        <Form onSubmit={this.submit}>
-          <Form.Field
+        <Form className='form' onSubmit={this.submit}>
+          <Form.Input
             id="signin-form-name"
             textAlign='left'
             control={Input}
@@ -72,14 +72,9 @@ class Signup extends React.Component {
             width={10}
             onChange={this.handleChange}
           />
-          <Form.Button animated textAlign='left'>
-            <Button.Content visible>Submit</Button.Content>
-            <Button.Content hidden>
-              <Icon name='arrow alternate circle right' />
-            </Button.Content>
-          </Form.Button>
+          <Form.Button className='button' id="signup-form-submit" content="Submit" color='green'/>
         </Form>
-        <Header info width={6}>
+        <Header width={6}>
               Already have an account? <Link to="/signin">Log in</Link>
         </Header>
         {this.state.error === '' ? (
