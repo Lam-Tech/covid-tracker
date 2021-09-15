@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { Container, Form, Header, Message, Input } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
-import signupbackground from '../../../public/images/signupbackground.png';
+
 
 /**
  * Signup component is similar to signin component, but we create a new user instead.
@@ -40,7 +40,7 @@ class Signup extends React.Component {
       return <Redirect to={from}/>;
     }
     return (
-      <Container className="signup-page">
+      <Container id="signup-page" textAlign='center' className='signupbg'>
         <Header as="h1" textAlign="left">
               Create account
         </Header>

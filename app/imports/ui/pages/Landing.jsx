@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 class Landing extends React.Component {
   render() {
     return (
-      <Container textAlign='center' fluid>
+      <Container textAlign='center' fluid className='landing'>
         <Header as='h1'>Help Stop Covid</Header>
         <p>by checking in for covid status daily</p>
         <Button.Group size='huge'>

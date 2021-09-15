@@ -1,6 +1,6 @@
 import React from 'react';
 import { Header, Container } from 'semantic-ui-react';
-import Condition from './Condition';
+import Condition from '../components/Condition';
 
 /** A simple static component to render some text for the landing page. */
 class Home extends React.Component {
