@@ -1,10 +1,12 @@
 import React from 'react';
 import { Button, Icon, Header, Modal, Container } from 'semantic-ui-react';
+import { Meteor } from 'meteor/meteor';
 
 /** A simple static component to render some text for the landing page. */
 class Condition extends React.Component {
   constructor(props) {
     super(props);
+    this.user = Meteor.user().username;
     this.today = new Date().toLocaleString().split(',')[0];
     this.state = {
       prompt: false,
@@ -13,6 +15,7 @@ class Condition extends React.Component {
   }
 
   render() {
+    console.log(this.user);
     return (
       <Container>
         <Modal
