@@ -10,9 +10,9 @@ class Landing extends React.Component {
         <Header as='h1'>Help Stop Covid</Header>
         <p>by checking in for covid status daily</p>
         <Button.Group size='huge'>
-          <Button as={NavLink} exact to="/signup" inverted color='blue'>Sign In</Button>
+          <Button as={NavLink} exact to="/signup" inverted color='green'>Sign In</Button>
           <Button.Or/>
-          <Button as={NavLink} exact to="/signin" inverted color='green'>Log In</Button>
+          <Button as={NavLink} exact to="/signin" inverted color='red'>Log In</Button>
         </Button.Group>
       </Container>
     );

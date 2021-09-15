@@ -115,10 +115,10 @@ class Condition extends React.Component {
           </Modal.Content>
           <Modal.Actions>
             <Button color='red' inverted onClick={() => this.editUserStatus(false)}>
-              <Icon name='remove'/> No
+              <Icon name='checkmark'/> Yes
             </Button>
             <Button color='green' inverted onClick={() => this.editUserStatus(true)}>
-              <Icon name='checkmark'/> Yes
+              <Icon name='remove'/> No
             </Button>
           </Modal.Actions>
         </Modal>

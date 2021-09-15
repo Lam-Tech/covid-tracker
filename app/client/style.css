@@ -20,3 +20,8 @@
   padding-right: 275px;
 }
 
+body {
+  background-image: url("images/landingbg4.png") !important;
+  background-size: cover !important;
+}
+

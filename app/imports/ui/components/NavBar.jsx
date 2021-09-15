@@ -14,12 +14,12 @@ class NavBar extends React.Component {
         {/* eslint-disable-next-line no-undef */}
         {this.props.currentUser && Roles.userIsInRole(Meteor.userId(), 'admin') === false ? (
           <Menu.Item as={NavLink} activeClassName="" exact to="/home">
-            <Icon name='podcast' size='huge' color='pink'></Icon>
+            <Icon name='podcast' size='huge' color='teal'></Icon>
           </Menu.Item>
         ) : ''}
         {this.props.currentUser === '' ? (
           <Menu.Item as={NavLink} activeClassName="" exact to="/">
-            <Icon name='podcast' size='huge' color='pink'></Icon>
+            <Icon name='podcast' size='huge' color='teal'></Icon>
           </Menu.Item>
         ) : ''
         }
