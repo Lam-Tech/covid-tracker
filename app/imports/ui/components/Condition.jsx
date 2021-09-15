@@ -34,7 +34,7 @@ class Condition extends React.Component {
                 Any of the Symptoms apply to you
             </p>
             <ul>
-              <li>Fever greater than 100 F or feeling feverish</li>
+              <li>Fever greater than 100.4 °F or feeling feverish</li>
               <li>Cough</li>
               <li>Shortness of Breath</li>
               <li>Sore throat</li>
@@ -45,6 +45,26 @@ class Condition extends React.Component {
               <li>Headache</li>
               <li>Skin Rash</li>
               <li>Chest pain</li>
+            </ul>
+            <p>
+              Check for Recent COVID-19 Exposure:
+            </p>
+            <ul>
+              <li>
+                Have you traveled out of the state and are currently under quarantine orders by
+                the Department of Health or your medical care provider ?
+              </li>
+              <li>
+                Are you unvaccinated and have been in close contact (&lt;6 feet for &ge; 15 minutes,
+                cumulatively, over a 24-hour period) with anyone who has an active, diagnosed case
+                of COVID-19?  Note: Healthcare students/personnel wearing appropriate
+                PPE at ALL TIMES while caring for a patient with COVID-19 would NOT be considered
+                a close contact (ref. DOH medical advisory #16)
+              </li>
+              <li>
+                Has the Department of Health told you that you have been in contact with a person
+                with COVID-19 and you are not vaccinated?
+              </li>
             </ul>
           </Modal.Content>
           <Modal.Actions>

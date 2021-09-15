@@ -1,14 +1,23 @@
 .footer {
   position: fixed;
-  bottom: 0px;
+  bottom: 0;
+  width: 100%;
 }
 
 .signupbg {
   background-image: url('images/bg.png');
   background-size: cover;
   background-position: center;
+  border-radius: 25px;
+  height: 425px;
+  padding-top: 50px;
+  outline: 10px black;
 }
 
-.landing {
-  background: aqua;
+.form {
+  padding-left: 275px;
+}
+
+.button {
+  padding-right: 275px;
 }

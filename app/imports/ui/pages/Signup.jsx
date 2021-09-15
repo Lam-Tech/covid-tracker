@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
-import { Container, Form, Header, Message } from 'semantic-ui-react';
+import { Button, Container, Form, Header, Message } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
 
 /**
@@ -40,10 +40,10 @@ class Signup extends React.Component {
     }
     return (
       <Container id="signup-page" textAlign='center' className='signupbg'>
-        <Header as="h1" textAlign="left">
+        <Header as="h1" textAlign="center">
               Create account
         </Header>
-        <Form onSubmit={this.submit}>
+        <Form className='form' onSubmit={this.submit}>
           <Form.Input
             id="signin-form-name"
             name="name"
@@ -69,11 +69,11 @@ class Signup extends React.Component {
             width={10}
             onChange={this.handleChange}
           />
-          <Form.Button id="signup-form-submit" content="Submit"/>
+          <Form.Button className='button' id="signup-form-submit" content="Submit" color='green'/>
         </Form>
-        <Message width={6}>
+        <Header width={6}>
               Already have an account? <Link to="/signin">Log in</Link>
-        </Message>
+        </Header>
         {this.state.error === '' ? (
           ''
         ) : (
