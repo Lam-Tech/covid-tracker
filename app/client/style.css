@@ -14,3 +14,9 @@
 }
 
 
+body {
+  background-image: url('images/landingbg2.png');
+  background-size: cover;
+  background-position: center;
+}
+
