@@ -10,18 +10,20 @@ class NavBar extends React.Component {
   render() {
     const menuStyle = { marginBottom: '200px' };
     return (
-      <div>
-        {this.props.currentUser === ' ' ? (
-          <Menu secondary style={menuStyle} borderless>
-          </Menu>
-        ) : (
-          <Menu className='home' secondary style={menuStyle} borderless fluid widths={1}>
-            <Menu.Item as={NavLink} activeClassName="" exact to="/">
-              <Icon name='podcast' size='huge' color='pink'></Icon>
-            </Menu.Item>
-          </Menu>
-        )}
-      </div>
+      <Menu className='home' secondary style={menuStyle} borderless fluid widths={1}>
+        {/* eslint-disable-next-line no-undef */}
+        {this.props.currentUser && Roles.userIsInRole(Meteor.userId(), 'admin') === false ? (
+          <Menu.Item as={NavLink} activeClassName="" exact to="/home">
+            <Icon name='podcast' size='huge' color='pink'></Icon>
+          </Menu.Item>
+        ) : ''}
+        {this.props.currentUser === '' ? (
+          <Menu.Item as={NavLink} activeClassName="" exact to="/">
+            <Icon name='podcast' size='huge' color='pink'></Icon>
+          </Menu.Item>
+        ) : ''
+        }
+      </Menu>
     );
   }
 }
