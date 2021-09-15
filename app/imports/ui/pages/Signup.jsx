@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
-import { Container, Form, Header, Message } from 'semantic-ui-react';
+import { Container, Form, Header, Message, Input } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
+import signupbackground from '../../../public/images/signupbackground.png';
 
 /**
  * Signup component is similar to signin component, but we create a new user instead.
@@ -39,39 +40,43 @@ class Signup extends React.Component {
       return <Redirect to={from}/>;
     }
     return (
-      <Container id="signup-page" textAlign='center'>
+      <Container className="signup-page">
         <Header as="h1" textAlign="left">
               Create account
         </Header>
         <Form onSubmit={this.submit}>
-          <Form.Input
+          <Form.Field
             id="signin-form-name"
-            name="name"
-            type="name"
+            textAlign='left'
+            control={Input}
+            label='Name'
             width={10}
-            placeholderposition="center"
+            placeholderposition="left"
             placeholder="Name"
             onChange={this.handleChange}
           />
           <Form.Input
             id="signup-form-email"
-            name="email"
-            type="email"
+            textAlign='left'
+            control={Input}
+            label='Email'
             width={10}
             placeholder="E-mail address"
             onChange={this.handleChange}
           />
           <Form.Input
             id="signup-form-password"
-            name="password"
+            textAlign='left'
+            control={Input}
+            label='Password'
             placeholder="Password"
             type="password"
             width={10}
             onChange={this.handleChange}
           />
-          <Form.Button id="signup-form-submit" content="Submit"/>
+          <Form.Button textAlign='left' id="signup-form-submit" content="Submit"/>
         </Form>
-        <Message width={6}>
+        <Message info width={6}>
               Already have an account? <Link to="/signin">Log in</Link>
         </Message>
         {this.state.error === '' ? (
