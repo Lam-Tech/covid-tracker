@@ -39,7 +39,7 @@ class Signup extends React.Component {
       return <Redirect to={from}/>;
     }
     return (
-      <Container id="signup-page" textAlign='center'>
+      <Container id="signup-page" textAlign='center' className='signupbg'>
         <Header as="h1" textAlign="left">
               Create account
         </Header>
