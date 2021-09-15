@@ -6,9 +6,10 @@
   background-image: url('images/bg.png');
   background-size: cover;
   background-position: center;
+  border-radius: 17.5px;
+  height: 625px;
+  padding-left: 150px;
+  padding-top: 100px;
 }
 
-.landing {
-  background: aqua;
-}
 
