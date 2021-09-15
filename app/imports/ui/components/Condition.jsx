@@ -1,5 +1,10 @@
 import React from 'react';
 import { Button, Icon, Header, Modal, Container } from 'semantic-ui-react';
+import swal from 'sweetalert';
+import { Meteor } from 'meteor/meteor';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Statuses } from '../../api/status/Status';
 
 /** A simple static component to render some text for the landing page. */
 class Condition extends React.Component {
@@ -10,6 +15,30 @@ class Condition extends React.Component {
       prompt: false,
       status: 'Undetermined',
     };
+  }
+
+  checkUserStatus() {
+    const owner = Meteor.userId();
+    const date = this.today;
+    const status = 'Undetermined';
+    const userStatus = this.props.statuses;
+
+    if (userStatus.length !== 0) {
+      this.setState({ status: userStatus });
+    } else {
+      Statuses.collection.insert({ owner, date, status },
+        (error) => {
+          if (error) {
+            swal('Error', error.message, 'error');
+          } else {
+            swal('Success', 'Remember to check in today', 'success');
+          }
+        });
+    }
+  }
+
+  componentDidMount() {
+    this.checkUserStatus();
   }
 
   render() {
@@ -53,4 +82,8 @@ class Condition extends React.Component {
   }
 }
 
-export default Condition;
+Condition.propTypes = {
+  statuses: PropTypes.array.isRequired,
+};
+
+export default withRouter(Condition);

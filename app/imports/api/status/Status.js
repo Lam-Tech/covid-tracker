@@ -14,7 +14,7 @@ class StatusesCollection {
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
       owner: String,
-      date: Date,
+      date: String,
       status: {
         type: String,
         allowedValues: ['Undetermined', 'Safe', 'Not Safe'],

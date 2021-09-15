@@ -11,7 +11,7 @@ class Footer extends React.Component {
     const menuStyle = { paddingLeft: '700px' };
     return (
       <footer className="footer">
-        <Container fixed style={menuStyle}>
+        <Container fixed="true" style={menuStyle}>
           <Menu secondary borderless widths={3}>
             {this.props.currentUser ? (
               [<Menu.Item as={NavLink} activeClassName="active" exact to="/home" key='home'>Home</Menu.Item>,
