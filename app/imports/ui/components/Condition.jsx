@@ -12,7 +12,7 @@ class Condition extends React.Component {
     this.today = new Date().toLocaleString().split(',')[0];
     this.state = {
       prompt: false,
-      status: Statuses.collection.findOne({ owner: this.owner, date: this.today }).status,
+      status: 'Undetermined',
     };
   }
 
@@ -54,6 +54,7 @@ class Condition extends React.Component {
 
   componentDidMount() {
     this.newUserStatus();
+    this.setState({ status: Statuses.collection.findOne({ owner: this.owner, date: this.today }).status });
   }
 
   render() {
