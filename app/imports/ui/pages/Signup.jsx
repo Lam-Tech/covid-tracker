@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
-import { Input, Container, Form, Header, Message } from 'semantic-ui-react';
+import { Container, Form, Header, Message } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
+
 /**
  * Signup component is similar to signin component, but we create a new user instead.
  */
@@ -32,7 +33,7 @@ class Signup extends React.Component {
 
   /* Display the signup form. Redirect to add page after successful registration and login. */
   render() {
-    const { from } = this.props.location.state || { from: { pathname: '/add' } };
+    const { from } = this.props.location.state || { from: { pathname: '/home' } };
     // if correct authentication, redirect to from: page instead of signup screen
     if (this.state.redirectToReferer) {
       return <Redirect to={from}/>;
@@ -40,33 +41,32 @@ class Signup extends React.Component {
     return (
       <Container id="signup-page" textAlign='center' className='signupbg'>
         <Header as="h1" textAlign="center">
-              Create account
+            Create account
         </Header>
         <Form className='form' onSubmit={this.submit}>
           <Form.Input
             id="signin-form-name"
-            textAlign='left'
-            control={Input}
-            label='Name'
+            label="Name"
+            type="name"
             width={10}
-            placeholderposition="left"
+            text='name'
+            placeholderposition="center"
             placeholder="Name"
             onChange={this.handleChange}
           />
-          <Form.Field
+          <Form.Input
             id="signup-form-email"
-            textAlign='left'
-            control={Input}
-            label='Email'
+            name="email"
+            type="email"
+            label="Email"
             width={10}
             placeholder="E-mail address"
             onChange={this.handleChange}
           />
-          <Form.Field
+          <Form.Input
             id="signup-form-password"
-            textAlign='left'
-            control={Input}
-            label='Password'
+            name="password"
+            label="Password"
             placeholder="Password"
             type="password"
             width={10}
@@ -75,7 +75,7 @@ class Signup extends React.Component {
           <Form.Button className='button' id="signup-form-submit" content="Submit" color='green'/>
         </Form>
         <Header width={6}>
-              Already have an account? <Link to="/signin">Log in</Link>
+            Already have an account? <Link to="/signin">Log in</Link>
         </Header>
         {this.state.error === '' ? (
           ''
