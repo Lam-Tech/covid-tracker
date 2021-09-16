@@ -42,37 +42,38 @@ export default class Signin extends React.Component {
     }
     // Otherwise return the Login form.
     return (
-      <Container id="signin-page" textAlign='center'>
-        <Header as="h1" textAlign="left">
+      <Container id="signin-page" textAlign='center' className='signupbg'>
+        <Header as="h1" textAlign="center">
               Welcome Back
         </Header>
-        <Form onSubmit={this.submit}>
+        <Form className='form' onSubmit={this.submit}>
           <Form.Input
             id="signin-form-email"
+            label='Email'
             name="email"
             type="email"
-            width={11}
+            width={10}
             placeholder="E-mail address"
             onChange={this.handleChange}
           />
           <Form.Input
             id="signin-form-password"
             name="password"
+            label='Password'
             placeholder="Password"
             type="password"
-            width={11}
+            width={10}
             onChange={this.handleChange}
           />
-          <Form.Button id="signin-form-submit" content="Submit"/>
+          <Form.Button className='button' id="signup-form-submit" content="Submit" color='green'/>
         </Form>
-        <Message>
+        <Header width={6}>
           <Link to="/signup">Click here to Register</Link>
-        </Message>
+        </Header>
         {this.state.error === '' ? (
           ''
         ) : (
-          <Message
-            error
+          <Message error
             header="Login was not successful"
             content={this.state.error}
           />

@@ -14,20 +14,22 @@ class PastHistory extends React.Component {
 
   renderPage() {
     return (
-      <Container>
-        <Header as="h2" textAlign="center">Past History</Header>
-        <Table celled>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Date</Table.HeaderCell>
-              <Table.HeaderCell>Status</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {this.props.statuses.map((status) => <StatusItem key={status._id} status={status} />)}
-          </Table.Body>
-        </Table>
-      </Container>
+      <div>
+        <Header as="h1" textAlign="center">Check In History/Status</Header>
+        <Container>
+          <Table padded>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell>Date</Table.HeaderCell>
+                <Table.HeaderCell>Status</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              {this.props.statuses.map((status) => <StatusItem key={status._id} status={status} />)}
+            </Table.Body>
+          </Table>
+        </Container>
+      </div>
     );
   }
 }

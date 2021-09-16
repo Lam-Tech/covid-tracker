@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Icon, Header, Modal, Container, Form } from 'semantic-ui-react';
+import { Button, Icon, Image, Modal, Container, Form } from 'semantic-ui-react';
 
 const options = [
   { key: 'm', text: 'Moderna', value: 'Moderna' },
@@ -30,24 +30,28 @@ class VaccCard extends React.Component {
           onClose={() => this.setState({ prompt: false })}
           onOpen={() => this.setState({ prompt: true })}
           open={this.state.prompt}
-          size='small'
-          trigger={<Button inverted color='red'>Upload/Edit Vaccine Card</Button>}
+          size='large'
+          trigger={<Button color='green' inverted>Edit Vaccine Card</Button>}
         >
-          <Header size='huge'>
+          <Modal.Header size='huge'>
               Fill in the Vaccine information
-          </Header>
+          </Modal.Header>
           <Modal.Content>
             <Form>
-              <Form.Input placeholder='First name' />
-              <Form.Input placeholder='Last name' />
-              <Form.Select
-                fluid
-                label='Type of Vaccine'
-                options={options}
-                placeholder='Vaccine'
-              />
+              <Form.Group widths='equal'>
+                <Form.Input placeholder='First name' label='First Name' />
+                <Form.Input placeholder='Last name' label='Last Name'/>
+                <Form.Select
+                  label='Type of Vaccine'
+                  options={options}
+                  placeholder='Vaccine'
+                />
+              </Form.Group>
             </Form>
           </Modal.Content>
+          <Modal.Description>
+            <Image size='medium' url='images/Placeholder.png' wrapped />
+          </Modal.Description>
           <Modal.Actions>
             <Button color='red' inverted onClick={() => this.editUserStatus(false)}>
               <Icon name='remove'/> Cancel

@@ -122,14 +122,14 @@ class Condition extends React.Component {
             </Button>
           </Modal.Actions>
         </Modal>
-        <h1>
+        <Header>
           Date:
           <span> {this.today}</span>
-        </h1>
-        <h1>
+        </Header>
+        <Header>
           Status:
           <span id="answer"> {this.state.status}</span>
-        </h1>
+        </Header>
       </Container>
     );
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Container } from 'semantic-ui-react';
+import { Button, Container, Segment } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import VaccCard from '../components/VaccCard';
 
@@ -7,9 +7,10 @@ import VaccCard from '../components/VaccCard';
 class Profile extends React.Component {
   render() {
     return (
-      <Container textAlign='center' fluid>
-        <VaccCard/>
-        <Button as={NavLink} exact to="/signout" inverted color='blue'>Sign out</Button>
+      <Container textAlign='center'>
+        <Button color='green' inverted>User Profile</Button><br></br><br></br><br></br>
+        <VaccCard/><br></br><br></br>
+        <Button as={NavLink} activeClassName="" exact to="/signout" color='red' inverted>Sign Out</Button>
       </Container>
     );
   }
