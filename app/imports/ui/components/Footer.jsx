@@ -3,24 +3,19 @@ import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter, NavLink } from 'react-router-dom';
-import { Container, Menu } from 'semantic-ui-react';
+import { Icon, Menu } from 'semantic-ui-react';
 
 /** The Footer appears at the bottom of every page. Rendered by the App Layout component. */
 class Footer extends React.Component {
   render() {
-    const menuStyle = { paddingLeft: '700px' };
     return (
-      <footer className="footer">
-        <Container fixed style={menuStyle}>
-          <Menu secondary borderless widths={3}>
-            {this.props.currentUser ? (
-              [<Menu.Item as={NavLink} activeClassName="active" exact to="/home" key='home'>Home</Menu.Item>,
-                <Menu.Item as={NavLink} activeClassName="active" exact to="/past-history" key='past-history'>Past</Menu.Item>,
-                <Menu.Item as={NavLink} activeClassName="active" exact to="/profile" key='profile'>Profile</Menu.Item>]
-            ) : ''}
-          </Menu>
-        </Container>
-      </footer>
+      <Menu secondary borderless fluid widths={3} className='footer'>
+        {this.props.currentUser ? (
+          [<Menu.Item as={NavLink} activeClassName="active" exact to="/home" key='home'><Icon size='large' name='pencil alternate' color='teal'/>Home</Menu.Item>,
+            <Menu.Item as={NavLink} activeClassName="active" exact to="/past-history" key='past-history'><Icon size='large' name='calendar alternate' color='teal'/>Health</Menu.Item>,
+            <Menu.Item as={NavLink} activeClassName="active" exact to="/profile" key='profile'><Icon size='large' name='address book outline' color='teal'/>Profile</Menu.Item>]
+        ) : ''}
+      </Menu>
     );
   }
 }

@@ -3,25 +3,27 @@ import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter, NavLink } from 'react-router-dom';
-import { Menu, Header, Icon } from 'semantic-ui-react';
+import { Menu, Icon } from 'semantic-ui-react';
 
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
 class NavBar extends React.Component {
   render() {
-    const menuStyle = { marginBottom: '200px' };
+    const menuStyle = { marginBottom: '150px' };
     return (
-      <div>
-        {this.props.currentUser === ' ' ? (
-          <Menu secondary style={menuStyle} borderless>
-          </Menu>
-        ) : (
-          <Menu inverted econdary style={menuStyle} borderless>
-            <Menu.Item as={NavLink} activeClassName="" exact to="/">
-              <Header inverted as='h1'><Icon inverted name='pen square' />Covid Tracker</Header>
-            </Menu.Item>
-          </Menu>
-        )}
-      </div>
+      <Menu className='home' secondary style={menuStyle} borderless fluid widths={1}>
+        {/* eslint-disable-next-line no-undef */}
+        {this.props.currentUser && Roles.userIsInRole(Meteor.userId(), 'admin') === false ? (
+          <Menu.Item as={NavLink} activeClassName="" exact to="/home">
+            <Icon name='podcast' size='huge' color='teal'></Icon>
+          </Menu.Item>
+        ) : ''}
+        {this.props.currentUser === '' ? (
+          <Menu.Item as={NavLink} activeClassName="" exact to="/">
+            <Icon name='podcast' size='huge' color='teal'></Icon>
+          </Menu.Item>
+        ) : ''
+        }
+      </Menu>
     );
   }
 }

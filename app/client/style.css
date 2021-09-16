@@ -1,15 +1,27 @@
 .footer {
   position: fixed;
-  bottom: 0px;
+  bottom: 0;
+  width: 100%;
 }
 .signupbg {
   background-image: url('images/bg.png');
   background-size: cover;
   background-position: center;
-  border-radius: 17.5px;
-  height: 625px;
-  padding-left: 150px;
-  padding-top: 100px;
+  border-radius: 25px;
+  height: 425px;
+  padding-top: 50px;
 }
 
+.form {
+  padding-left: 275px;
+}
+
+.button {
+  padding-right: 300px;
+}
+
+body {
+  background-image: url("images/landingbg4.png") !important;
+  background-size: cover !important;
+}
 
