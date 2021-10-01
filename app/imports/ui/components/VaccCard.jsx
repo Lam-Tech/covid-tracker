@@ -3,7 +3,6 @@ import { Button, Icon, Image, Modal, Container, Header, ModalContent, Input, Sel
 import { Meteor } from 'meteor/meteor';
 import swal from 'sweetalert';
 import { Vaccine } from '../../api/stuff/Vaccine';
-import { Statuses } from '../../api/status/Status';
 
 const options = [
   { key: 'm', text: 'Moderna', value: 'Moderna' },
