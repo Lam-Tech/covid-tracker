@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Button, Container, Header, Segment } from 'semantic-ui-react';
+import { Button, Container, Header} from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import VaccCard from '../components/VaccCard';
 
