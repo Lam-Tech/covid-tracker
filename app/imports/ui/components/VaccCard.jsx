@@ -24,20 +24,7 @@ class VaccCard extends React.Component {
 
   editVaccine() {
     this.setState({ prompt: false });
-    const owner = this.owner;
-    if (Vaccine.collection.findOne({ owner }) === null) {
-      Vaccine.collection.insert({},
-        (error) => {
-          if (error) {
-            swal('Error', error.message, 'error');
-          } else {
-            swal('Today is a new day', 'Remember to check in!', 'success');
-          }
-        });
-    }
-    const _id = Vaccine.collection.findOne({ owner })._id;
-
-    Vaccine.collection.update(_id, {
+    Vaccine.collection.update(Meteor.user().username, {
       $set: {
         owner: this.name,
         vaccineType: this.vaccineType,
