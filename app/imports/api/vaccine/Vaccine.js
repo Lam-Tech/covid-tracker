@@ -16,11 +16,11 @@ class VaccineCollection {
         type: String,
         allowedValues: ['Pfizer', 'Moderna', 'Johnson & Johnson', 'AstraZeneca', 'Other'],
       },
-      dose1Lot: { label: 'Manufacturer Lot Number', type: String },
-      dose1Date: { label: 'Data Received', type: String },
+      dose1Lot: { label: 'Manufacturer Lot Number', type: Number },
+      dose1Date: { label: 'Data Received', type: Date },
       dose1Site: { label: 'Clinic Site', type: String },
-      dose2Lot: { label: 'Manufacturer Lot Number', type: String },
-      dose2Date: { label: 'Data Received', type: String },
+      dose2Lot: { label: 'Manufacturer Lot Number', type: Number },
+      dose2Date: { label: 'Data Received', type: Date },
       dose2Site: { label: 'Clinic Site', type: String },
     }, { tracker: Tracker });
     this.collection.attachSchema(this.schema);
