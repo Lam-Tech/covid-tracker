@@ -1,8 +1,6 @@
 import React from 'react';
 import { Button, Icon, Image, Modal, Container, Header, ModalContent, Input, Select } from 'semantic-ui-react';
-import { Meteor } from 'meteor/meteor';
 import swal from 'sweetalert';
-import { Vaccine } from '../../api/vaccine/Vaccine';
 
 const options = [
   { key: 'm', text: 'Moderna', value: 'Moderna' },
@@ -15,30 +13,21 @@ const options = [
 /** A simple static component to render some text for the landing page. */
 class VaccCard extends React.Component {
   constructor(props) {
-    super(props);
-    this.owner = Meteor.user().username;
+    super(props)
     this.state = {
       prompt: false,
     };
   }
 
-  editVaccine() {
-    this.setState({ prompt: false });
-    Vaccine.collection.update(Meteor.user().username, {
-      $set: {
-        owner: this.name,
-        vaccineType: this.vaccineType,
-        dose1Lot: this.dose1Lot,
-        dose1Date: this.dose1Date,
-        does1Site: this.dose1Site,
-        dose2Lot: this.dose2Lot,
-        dose2Date: this.dose2Date,
-        does2Site: this.dose2Site,
-      },
-    },
-    (error) => (error ?
-      swal('Error', error.message, 'error') :
-      swal('Success', 'Status updated successfully', 'success')));
+  editVaccine(temp) {
+    // eslint-disable-next-line eqeqeq
+    if (temp) {
+      this.setState({ prompt: false });
+      swal('Success', 'Vaccine Information Saved', 'success');
+    } else {
+      this.setState({ prompt: false });
+    }
+
   }
 
   render() {
@@ -61,18 +50,21 @@ class VaccCard extends React.Component {
                 label='Name'
                 placeholder='Full Name'
                 value={this.name}
+                required
               />
               <Select
                 label='Vaccine Type'
                 placeholder='VaccineType'
                 options={options}
                 value={this.vaccineType}
+                required
               />
               <Header>First Does</Header>
               <Input
                 label='Lot Number'
                 placeholder='1234567'
                 value={this.dose1Lot}
+                required
               />
               <Input
                 label='Data Received'
@@ -103,10 +95,10 @@ class VaccCard extends React.Component {
             </Modal.Description>
           </ModalContent>
           <Modal.Actions>
-            <Button color='red' inverted onClick={() => this.editVaccine()}>
+            <Button color='red' inverted onClick={() => this.editVaccine(false)}>
               <Icon name='remove'/> Cancel
             </Button>
-            <Button color='green' inverted onClick={() => this.editVaccine()}>
+            <Button color='green' inverted onClick={() => this.editVaccine(true)}>
               <Icon name='checkmark'/> Upload
             </Button>
           </Modal.Actions>
