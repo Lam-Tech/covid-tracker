@@ -14,5 +14,15 @@
     { "name": "Bicycle", "quantity": 2, "owner": "john@foo.com", "condition": "poor" },
     { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
     { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
+  ],
+
+  "defaultStatuses": [
+    { "owner" : "john@foo.com", "date" : "9/24/2021", "status" : "Safe" },
+    { "owner" : "john@foo.com", "date" : "9/25/2021", "status" : "Safe" },
+    { "owner" : "john@foo.com", "date" : "9/26/2021", "status" : "Not Safe" },
+    { "owner" : "john@foo.com", "date" : "9/27/2021", "status" : "Not Safe" },
+    { "owner" : "john@foo.com", "date" : "9/28/2021", "status" : "Safe" },
+    { "owner" : "john@foo.com", "date" : "9/29/2021", "status" : "Safe" },
+    { "owner" : "john@foo.com", "date" : "9/30/2021", "status" : "Safe" }
   ]
 }

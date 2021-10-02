@@ -11,16 +11,16 @@ class VaccineCollection {
     this.collection = new Mongo.Collection(this.name);
 
     this.schema = new SimpleSchema({
-      name: { label: 'name', type: String },
+      owner: String,
       vaccineType: {
         type: String,
         allowedValues: ['Pfizer', 'Moderna', 'Johnson & Johnson', 'AstraZeneca', 'Other'],
       },
-      dose1Lot: { label: 'Manufacturer Lot Number', type: Number },
-      dose1Date: { label: 'Data Received', type: Date },
+      dose1Lot: { label: 'Manufacturer Lot Number', type: String },
+      dose1Date: { label: 'Data Received', type: String },
       dose1Site: { label: 'Clinic Site', type: String },
-      dose2Lot: { label: 'Manufacturer Lot Number', type: Number },
-      dose2Date: { label: 'Data Received', type: Date },
+      dose2Lot: { label: 'Manufacturer Lot Number', type: String },
+      dose2Date: { label: 'Data Received', type: String },
       dose2Site: { label: 'Clinic Site', type: String },
     }, { tracker: Tracker });
     this.collection.attachSchema(this.schema);

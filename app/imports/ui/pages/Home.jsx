@@ -15,8 +15,9 @@ class Home extends React.Component {
   renderPage() {
     return (
       <Container textAlign='center' fluid>
-        <Header as='h1'>Hello</Header>
-        <p>How are you feeling Today?</p>
+        <Header as='h1'>Hello!</Header>
+        <Header as='h2'>{Meteor.user().username}</Header>
+        <Header as='h2'>How are you feeling Today?</Header>
         <Condition/>
       </Container>
     );

@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Icon, Image, Modal, Container, Header, ModalContent, Input, Select } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import swal from 'sweetalert';
-import { Vaccine } from '../../api/stuff/Vaccine';
+import { Vaccine } from '../../api/vaccine/Vaccine';
 
 const options = [
   { key: 'm', text: 'Moderna', value: 'Moderna' },
@@ -16,40 +16,42 @@ const options = [
 class VaccCard extends React.Component {
   constructor(props) {
     super(props);
+    this.owner = Meteor.user().username;
     this.state = {
       prompt: false,
-      name: this.name,
-      vaccineType: this.vaccineType,
-      dose1Lot: this.dose1Lot,
-      dose1Date: this.dose1Date,
-      does1Site: this.dose1Site,
-      dose2Lot: this.dose2Lot,
-      dose2Date: this.dose2Date,
-      does2Site: this.dose2Site,
     };
   }
 
-  handleChange = (e, { value }) => this.setState({ value })
-
   editVaccine() {
-    if (true) {
-      Vaccine.collection.update(Meteor.userId, {
-        $set: {
-          name: this.name,
-          vaccineType: this.vaccineType,
-          dose1Lot: this.dose1Lot,
-          dose1Date: this.dose1Date,
-          does1Site: this.dose1Site,
-          dose2Lot: this.dose2Lot,
-          dose2Date: this.dose2Date,
-          does2Site: this.dose2Site,
-        },
-      },
-      (error) => (error ?
-        swal('Error', error.message, 'error') :
-        swal('Success', 'Status updated successfully', 'success')));
-    }
     this.setState({ prompt: false });
+    const owner = this.owner;
+    if (Vaccine.collection.findOne({ owner }) === null) {
+      Vaccine.collection.insert({},
+        (error) => {
+          if (error) {
+            swal('Error', error.message, 'error');
+          } else {
+            swal('Today is a new day', 'Remember to check in!', 'success');
+          }
+        });
+    }
+    const _id = Vaccine.collection.findOne({ owner })._id;
+
+    Vaccine.collection.update(_id, {
+      $set: {
+        owner: this.name,
+        vaccineType: this.vaccineType,
+        dose1Lot: this.dose1Lot,
+        dose1Date: this.dose1Date,
+        does1Site: this.dose1Site,
+        dose2Lot: this.dose2Lot,
+        dose2Date: this.dose2Date,
+        does2Site: this.dose2Site,
+      },
+    },
+    (error) => (error ?
+      swal('Error', error.message, 'error') :
+      swal('Success', 'Status updated successfully', 'success')));
   }
 
   render() {
@@ -114,10 +116,10 @@ class VaccCard extends React.Component {
             </Modal.Description>
           </ModalContent>
           <Modal.Actions>
-            <Button color='red' inverted onClick={() => this.editVaccine(false)}>
+            <Button color='red' inverted onClick={() => this.editVaccine()}>
               <Icon name='remove'/> Cancel
             </Button>
-            <Button color='green' inverted onClick={() => this.editVaccine(true)}>
+            <Button color='green' inverted onClick={() => this.editVaccine()}>
               <Icon name='checkmark'/> Upload
             </Button>
           </Modal.Actions>

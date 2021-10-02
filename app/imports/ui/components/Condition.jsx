@@ -8,7 +8,7 @@ import { Statuses } from '../../api/status/Status';
 class Condition extends React.Component {
   constructor(props) {
     super(props);
-    this.owner = Meteor.userId();
+    this.owner = Meteor.user().username;
     this.today = new Date().toLocaleString().split(',')[0];
     this.state = {
       prompt: false,
@@ -52,6 +52,12 @@ class Condition extends React.Component {
 
   }
 
+  statusColor(status) {
+    if (status === 'Safe') return 'green';
+    if (status === 'Not Safe') return 'red';
+    return 'black';
+  }
+
   componentDidMount() {
     this.newUserStatus();
     this.setState({ status: Statuses.collection.findOne({ owner: this.owner, date: this.today }).status });
@@ -67,7 +73,7 @@ class Condition extends React.Component {
           onOpen={() => this.setState({ prompt: true })}
           open={this.state.prompt}
           size='small'
-          trigger={<Button inverted color='red'>Check for Symptoms</Button>}
+          trigger={<Button size='big' inverted color='red'>Check for Symptoms</Button>}
         >
           <Header size='huge'>
               Do any of the following apply to you?
@@ -126,7 +132,7 @@ class Condition extends React.Component {
           Date:
           <span> {this.today}</span>
         </Header>
-        <Header>
+        <Header as='h2' color={this.statusColor(this.state.status)}>
           Status:
           <span id="answer"> {this.state.status}</span>
         </Header>
