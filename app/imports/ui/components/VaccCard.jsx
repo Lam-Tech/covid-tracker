@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Icon, Image, Modal, Container, Header, ModalContent, Segment } from 'semantic-ui-react';
+import { Button, Icon, Modal, Container, Header, ModalContent, Segment, Input } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import swal from 'sweetalert';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -28,12 +28,23 @@ class VaccCard extends React.Component {
     };
   }
 
+  /*
+  loadImage(display) {
+    const image = display.target.files;
+    const reader = new global.FileReader();
+    reader.onload = r => {
+
+      this.setState({ img: r.target.result });
+    };
+    reader.readAsDataURL(image[0]);
+  }
+*/
   submit(data) {
     const owner = this.owner;
-    const { vaccineType, dose1Lot, dose1Date, dose1Site, dose2Lot, dose2Date, dose2Site } = data;
+    const { vaccineType, dose1Lot, dose1Date, dose1Site, dose2Lot, dose2Date, dose2Site /* , card */ } = data;
 
     if (Vaccine.collection.findOne({ owner }) === undefined) {
-      Vaccine.collection.insert({ owner, vaccineType, dose1Lot, dose1Date, dose1Site, dose2Lot, dose2Date, dose2Site },
+      Vaccine.collection.insert({ owner, vaccineType, dose1Lot, dose1Date, dose1Site, dose2Lot, dose2Date, dose2Site/* , card */ },
         (error) => {
           if (error) {
             swal('Error', error.message, 'error');
@@ -43,7 +54,7 @@ class VaccCard extends React.Component {
         });
     } else {
       const _id = Vaccine.collection.findOne({ owner })._id;
-      Vaccine.collection.update(_id, { $set: { vaccineType, dose1Lot, dose1Date, dose1Site, dose2Lot, dose2Date, dose2Site } },
+      Vaccine.collection.update(_id, { $set: { vaccineType, dose1Lot, dose1Date, dose1Site, dose2Lot, dose2Date, dose2Site/* , card */ } },
         (error) => {
           if (error) {
             swal('Error', error.message, 'error');
@@ -63,7 +74,7 @@ class VaccCard extends React.Component {
           onOpen={() => this.setState({ prompt: true })}
           open={this.state.prompt}
           size='large'
-          trigger={<Button color='green' inverted>Create/Edit Vaccine Card</Button>}
+          trigger={<Button color='green' size={'big'} inverted>Create/Edit Vaccine Card</Button>}
         >
           <AutoForm schema={bridge} onSubmit={data => this.submit(data)}>
             <Segment>
@@ -71,7 +82,15 @@ class VaccCard extends React.Component {
               Fill in the Vaccine information
               </Modal.Header>
               <ModalContent image>
-                <Image size='large' src='https://getstamped.co.uk/wp-content/uploads/WebsiteAssets/Placeholder.jpg'wrapped/>
+                <label>Upload Your Vaccine Card:</label>
+                <Input
+                  type="file"
+                  name="card"
+                  accept="image/png, image/jpeg"
+                  // onchange="loadFile(event)"
+                />
+                <img/>
+                <br></br><br></br>
                 <Modal.Description>
                   <SelectField
                     name = "vaccineType"
@@ -115,6 +134,7 @@ class VaccCard extends React.Component {
                 </Modal.Description>
               </ModalContent>
               <Modal.Actions>
+                <br></br><br></br>
                 <Button color='red' inverted onClick={() => this.setState({ prompt: false })}>
                   <Icon name='remove'/> Cancel
                 </Button>

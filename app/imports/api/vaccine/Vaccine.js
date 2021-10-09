@@ -22,6 +22,7 @@ class VaccineCollection {
       dose2Lot: { label: 'Manufacturer Lot Number', type: Number },
       dose2Date: { label: 'Data Received', type: Date },
       dose2Site: { label: 'Clinic Site', type: String },
+      // card: { label: 'Card', type: String },
     }, { tracker: Tracker });
     this.collection.attachSchema(this.schema);
     this.userPublicationName = `${this.name}.publication.user`;

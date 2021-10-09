@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Button, Container, Header } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import VaccCard from '../components/VaccCard';
+import DisplayVaccInfo from '../components/DisplayVaccInfo';
 
 /** A simple static component to render some text for the landing page. */
 class Profile extends React.Component {
@@ -10,9 +11,9 @@ class Profile extends React.Component {
     return (
       <Container textAlign='center'>
         <Header as='h2'>{Meteor.user().username}</Header>
-        <Button color='green' inverted>User Profile</Button>
-        <br></br><br></br><br></br><VaccCard/><br></br><br></br>
-        <Button as={NavLink} activeClassName="" exact to="/signout" color='red' inverted>Sign Out</Button>
+        <DisplayVaccInfo/>
+        <br></br><VaccCard/><br></br>
+        <Button size={'big'} as={NavLink} activeClassName="" exact to="/signout" color='red' inverted>Sign Out</Button>
       </Container>
     );
   }
