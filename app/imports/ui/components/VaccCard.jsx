@@ -70,6 +70,7 @@ class VaccCard extends React.Component {
     return (
       <Container>
         <Modal
+          basic
           onClose={() => this.setState({ prompt: false })}
           onOpen={() => this.setState({ prompt: true })}
           open={this.state.prompt}
@@ -78,12 +79,12 @@ class VaccCard extends React.Component {
         >
           <AutoForm schema={bridge} onSubmit={data => this.submit(data)}>
             <Segment>
-              <Modal.Header size='huge'>
-              Fill in the Vaccine information
-              </Modal.Header>
-              <ModalContent image>
-                <label>Upload Your Vaccine Card:</label>
+              <Header size='huge' textAlign='center'>
+                Fill in the Vaccine information
+              </Header>
+              <ModalContent>
                 <Input
+                  label="Upload a picture of Vaccine Card"
                   type="file"
                   name="card"
                   accept="image/png, image/jpeg"

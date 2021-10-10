@@ -23,7 +23,7 @@ class DisplayVaccInfo extends React.Component {
           onClose={() => this.setState({ prompt: false })}
           onOpen={() => this.setState({ prompt: true })}
           open={this.state.prompt}
-          size='large'
+          size='medium'
           trigger={<Button size='big' inverted color='red'>Display Vaccine Info</Button>}
         >
           <Header size='huge' textAlign='center'>
