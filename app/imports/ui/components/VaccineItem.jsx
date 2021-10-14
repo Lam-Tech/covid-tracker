@@ -29,8 +29,10 @@ class VaccineItem extends React.Component {
       */
       <Grid columns={2} divided>
         <GridRow>
-          <Header textAlign='center'>Name: {this.props.vaccine.ownerName}</Header>
-          <Header textAlign='center'>Vaccine Brand: {this.props.vaccine.vaccineType}</Header>
+          <Header as='h5' textAlign='left'>Name: {this.props.vaccine.ownerName}</Header>
+        </GridRow>
+        <GridRow>
+          <Header as='h5' textAlign='left'>Vaccine Brand: {this.props.vaccine.vaccineType}</Header>
         </GridRow>
         <GridRow>
           <Grid.Column>Dose1 Lot:  {this.props.vaccine.dose1Lot}</Grid.Column>
