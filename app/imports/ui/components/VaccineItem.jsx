@@ -28,14 +28,17 @@ class VaccineItem extends React.Component {
       </Card>
       */
       <Grid columns={2} divided>
-        <Header textAlign='center'>Vaccine Brand: {this.props.vaccine.vaccineType}</Header>
+        <GridRow>
+          <Header textAlign='center'>Name: {this.props.vaccine.ownerName}</Header>
+          <Header textAlign='center'>Vaccine Brand: {this.props.vaccine.vaccineType}</Header>
+        </GridRow>
         <GridRow>
           <Grid.Column>Dose1 Lot:  {this.props.vaccine.dose1Lot}</Grid.Column>
           <Grid.Column>Dose2 Lot:  {this.props.vaccine.dose2Lot}</Grid.Column>
         </GridRow>
         <GridRow>
-          <Grid.Column>Dose1 Date:  {this.props.vaccine.dose1Lot}</Grid.Column>
-          <Grid.Column>Dose2 Date:  {this.props.vaccine.dose2Lot}</Grid.Column>
+          <Grid.Column>Dose1 Date:  {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(this.props.vaccine.dose1Date)}</Grid.Column>
+          <Grid.Column>Dose2 Date:  {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(this.props.vaccine.dose2Date)}</Grid.Column>
         </GridRow>
         <GridRow>
           <Grid.Column>Dose1 Site: {this.props.vaccine.dose1Site}</Grid.Column>
@@ -50,11 +53,12 @@ class VaccineItem extends React.Component {
 VaccineItem.propTypes = {
   vaccine: PropTypes.shape({
     vaccineType: PropTypes.string,
+    ownerName: PropTypes.string,
     dose1Lot: PropTypes.number,
-    dose1Date: PropTypes.date,
+    dose1Date: PropTypes.instanceOf(Date),
     dose1Site: PropTypes.string,
     dose2Lot: PropTypes.number,
-    dose2Date: PropTypes.date,
+    dose2Date: PropTypes.instanceOf(Date),
     dose2Site: PropTypes.string,
   }).isRequired,
 };

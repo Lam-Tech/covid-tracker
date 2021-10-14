@@ -4,7 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import swal from 'sweetalert';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import {
-  AutoForm,
+  AutoForm, DateField,
   ErrorsField,
   HiddenField,
   NumField,
@@ -91,15 +91,15 @@ class VaccCard extends React.Component {
                 <img/>
                 <br/><br/>
                 <Modal.Description>
-                  <SelectField
-                    name = "vaccineType"
-                    label='Vaccine Type'
-                    placeholder='VaccineType'
-                  />
                   <TextField
                     name = "ownerName"
                     label='Full Name'
                     placeholder='John Doe'
+                  />
+                  <SelectField
+                    name = "vaccineType"
+                    label='Vaccine Type'
+                    placeholder='VaccineType'
                   />
                   <Header>First Does</Header>
                   <NumField
@@ -108,7 +108,7 @@ class VaccCard extends React.Component {
                     label='Lot Number'
                     placeholder='1234567'
                   />
-                  <NumField
+                  <DateField
                     name = "dose1Date"
                     label='Data Received'
                     placeholder='mm/dd/yyyy'
@@ -125,7 +125,7 @@ class VaccCard extends React.Component {
                     label='Lot Number'
                     placeholder='1234567'
                   />
-                  <NumField
+                  <DateField
                     name = "dose2Date"
                     label='Data Received'
                     placeholder='mm/dd/yyyy'

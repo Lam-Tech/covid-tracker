@@ -28,7 +28,6 @@ class Profile extends React.Component {
 
 Profile.propTypes = {
   ready: PropTypes.bool.isRequired,
-  currentUser: PropTypes.string.isRequired,
 };
 
 export default withTracker(() => {

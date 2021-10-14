@@ -23,7 +23,7 @@ class DisplayVaccInfo extends React.Component {
           onClose={() => this.setState({ prompt: false })}
           onOpen={() => this.setState({ prompt: true })}
           open={this.state.prompt}
-          size='medium'
+          size='large'
           trigger={<Button size='big' inverted color='red'>Display Vaccine Info</Button>}
         >
           <Header size='huge' textAlign='center'>
@@ -41,7 +41,7 @@ class DisplayVaccInfo extends React.Component {
 }
 
 DisplayVaccInfo.propTypes = {
-  vaccine: PropTypes.string.isRequired,
+  vaccine: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
