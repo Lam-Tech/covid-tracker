@@ -2,8 +2,6 @@ import React from 'react';
 import { Button, Icon, Modal, Container, Header, ModalContent, Segment, Input } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import swal from 'sweetalert';
-import { withTracker } from 'meteor/react-meteor-data';
-import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import {
   AutoForm,
@@ -151,21 +149,4 @@ class VaccCard extends React.Component {
   }
 }
 
-// Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use.
-VaccCard.propTypes = {
-  doc: PropTypes.object,
-  model: PropTypes.object,
-  ready: PropTypes.bool.isRequired,
-};
-
-// withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
-export default withTracker(() => {
-  // Get access to Stuff documents.
-  const subscription = Meteor.subscribe(Vaccine.userPublicationName);
-  // Determine if the subscription is ready
-  const ready = subscription.ready();
-  // Get the document
-  return {
-    ready,
-  };
-})(VaccCard);
+export default VaccCard;
