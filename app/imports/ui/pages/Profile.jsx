@@ -19,7 +19,7 @@ class Profile extends React.Component {
       <Container textAlign='center'>
         <Header as='h2'>{Meteor.user().username}</Header>
         <DisplayVaccInfo/>
-        <br></br><VaccCard/><br></br>
+        <br/><VaccCard/><br/>
         <Button size={'big'} as={NavLink} activeClassName="" exact to="/signout" color='red' inverted>Sign Out</Button>
       </Container>
     );
@@ -28,7 +28,7 @@ class Profile extends React.Component {
 
 Profile.propTypes = {
   ready: PropTypes.bool.isRequired,
-  currentUser: PropTypes.string.isRequired
+  currentUser: PropTypes.string.isRequired,
 };
 
 export default withTracker(() => {

@@ -12,6 +12,7 @@ class VaccineCollection {
 
     this.schema = new SimpleSchema({
       owner: String,
+      ownerName: String,
       vaccineType: {
         type: String,
         allowedValues: ['Pfizer', 'Moderna', 'Johnson & Johnson', 'AstraZeneca', 'Other'],

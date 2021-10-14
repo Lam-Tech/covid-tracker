@@ -39,10 +39,10 @@ class VaccCard extends React.Component {
 */
   submit(data) {
     const owner = this.owner;
-    const { vaccineType, dose1Lot, dose1Date, dose1Site, dose2Lot, dose2Date, dose2Site /* , card */ } = data;
+    const { ownerName, vaccineType, dose1Lot, dose1Date, dose1Site, dose2Lot, dose2Date, dose2Site /* , card */ } = data;
 
     if (Vaccine.collection.findOne({ owner }) === undefined) {
-      Vaccine.collection.insert({ owner, vaccineType, dose1Lot, dose1Date, dose1Site, dose2Lot, dose2Date, dose2Site/* , card */ },
+      Vaccine.collection.insert({ owner, ownerName, vaccineType, dose1Lot, dose1Date, dose1Site, dose2Lot, dose2Date, dose2Site/* , card */ },
         (error) => {
           if (error) {
             swal('Error', error.message, 'error');
@@ -52,7 +52,7 @@ class VaccCard extends React.Component {
         });
     } else {
       const _id = Vaccine.collection.findOne({ owner })._id;
-      Vaccine.collection.update(_id, { $set: { vaccineType, dose1Lot, dose1Date, dose1Site, dose2Lot, dose2Date, dose2Site/* , card */ } },
+      Vaccine.collection.update(_id, { $set: { ownerName, vaccineType, dose1Lot, dose1Date, dose1Site, dose2Lot, dose2Date, dose2Site/* , card */ } },
         (error) => {
           if (error) {
             swal('Error', error.message, 'error');
@@ -89,12 +89,17 @@ class VaccCard extends React.Component {
                   // onchange="loadFile(event)"
                 />
                 <img/>
-                <br></br><br></br>
+                <br/><br/>
                 <Modal.Description>
                   <SelectField
                     name = "vaccineType"
                     label='Vaccine Type'
                     placeholder='VaccineType'
+                  />
+                  <TextField
+                    name = "ownerName"
+                    label='Full Name'
+                    placeholder='John Doe'
                   />
                   <Header>First Does</Header>
                   <NumField
@@ -133,7 +138,7 @@ class VaccCard extends React.Component {
                 </Modal.Description>
               </ModalContent>
               <Modal.Actions>
-                <br></br><br></br>
+                <br/><br/>
                 <Button color='red' inverted onClick={() => this.setState({ prompt: false })}>
                   <Icon name='remove'/> Cancel
                 </Button>
