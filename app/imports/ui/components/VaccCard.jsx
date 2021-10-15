@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Icon, Modal, Container, Header, ModalContent, Segment, Input } from 'semantic-ui-react';
+import { Button, Icon, Modal, Container, Header, ModalContent, Segment, Input, Image } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import swal from 'sweetalert';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
@@ -21,28 +21,31 @@ class VaccCard extends React.Component {
   constructor(props) {
     super(props);
     this.owner = Meteor.user().username;
+    this.card = '';
     this.state = {
       prompt: false,
+      image: '',
     };
+
+    this.onImageChange = this.onImageChange.bind(this);
   }
 
-  /*
-  loadImage(display) {
-    const image = display.target.files;
-    const reader = new global.FileReader();
-    reader.onload = r => {
+  onImageChange = event => {
+    if (event.target.files && event.target.files[0]) {
+      const img = event.target.files[0];
+      const card = URL.createObjectURL(img);
+      this.setState({
+        image: card,
+      });
+      this.card = card;
+    }
+  };
 
-      this.setState({ img: r.target.result });
-    };
-    reader.readAsDataURL(image[0]);
-  }
-*/
   submit(data) {
-    const owner = this.owner;
-    const { ownerName, vaccineType, dose1Lot, dose1Date, dose1Site, dose2Lot, dose2Date, dose2Site /* , card */ } = data;
+    const { owner, ownerName, vaccineType, dose1Lot, dose1Date, dose1Site, dose2Lot, dose2Date, dose2Site, card } = data;
 
     if (Vaccine.collection.findOne({ owner }) === undefined) {
-      Vaccine.collection.insert({ owner, ownerName, vaccineType, dose1Lot, dose1Date, dose1Site, dose2Lot, dose2Date, dose2Site/* , card */ },
+      Vaccine.collection.insert({ owner, ownerName, vaccineType, dose1Lot, dose1Date, dose1Site, dose2Lot, dose2Date, dose2Site, card },
         (error) => {
           if (error) {
             swal('Error', error.message, 'error');
@@ -52,7 +55,7 @@ class VaccCard extends React.Component {
         });
     } else {
       const _id = Vaccine.collection.findOne({ owner })._id;
-      Vaccine.collection.update(_id, { $set: { ownerName, vaccineType, dose1Lot, dose1Date, dose1Site, dose2Lot, dose2Date, dose2Site/* , card */ } },
+      Vaccine.collection.update(_id, { $set: { ownerName, vaccineType, dose1Lot, dose1Date, dose1Site, dose2Lot, dose2Date, dose2Site, card } },
         (error) => {
           if (error) {
             swal('Error', error.message, 'error');
@@ -84,11 +87,10 @@ class VaccCard extends React.Component {
                 <Input
                   label="Upload a picture of Vaccine Card"
                   type="file"
-                  name="card"
                   accept="image/png, image/jpeg"
-                  // onchange="loadFile(event)"
+                  onChange={this.onImageChange}
                 />
-                <img/>
+                <Image src={this.state.image}/>
                 <br/><br/>
                 <Modal.Description>
                   <TextField
@@ -145,6 +147,7 @@ class VaccCard extends React.Component {
                 <SubmitField value="Submit"/>
                 <ErrorsField/>
                 <HiddenField name="owner" value={this.owner}/>
+                <HiddenField name="card" value={this.card}/>
               </Modal.Actions>
             </Segment>
           </AutoForm>
