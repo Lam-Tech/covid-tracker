@@ -24,7 +24,7 @@ class VaccCard extends React.Component {
     this.card = '';
     this.state = {
       prompt: false,
-      image: '',
+      image: '../../images/FakeVaccard.png',
     };
 
     this.onImageChange = this.onImageChange.bind(this);
